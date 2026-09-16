@@ -1,5 +1,5 @@
 ---
-title: "Oslo: A Maritime Week Amid a Nation in Mourning"
+title: "Oslo: Maritime Week Amid a Nation in Mourning"
 date: 2026-09-15T09:00:00-04:00
 draft: false
 description: "Reflections on maritime leadership, international shipping, and a historic week of national mourning in Oslo."
