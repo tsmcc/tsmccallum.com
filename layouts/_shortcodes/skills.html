@@ -3,7 +3,7 @@
   {{- range $skills }}
     {{- $skill := strings.TrimSpace . -}}
     {{- with $skill }}
-      <span class="rounded-full border px-3 py-1 text-sm font-medium" style="color: #fff; border-color: rgb(var(--color-primary-700)); background-color: rgb(var(--color-primary-800));">{{ . }}</span>
+      <span class="skill-pill rounded-full border px-3 py-1 text-sm font-medium">{{ . }}</span>
     {{- end }}
   {{- end }}
 </div>

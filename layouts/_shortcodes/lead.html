@@ -1,0 +1,6 @@
+<div class="lead !mb-4 text-xl">
+  {{ .Inner | markdownify }}
+</div>
+{{ if eq .Page.Section "posts" }}
+  {{ partial "sharing-links.html" .Page }}
+{{ end }}

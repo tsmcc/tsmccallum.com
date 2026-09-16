@@ -1,7 +1,7 @@
-<footer class="py-10 print:hidden">
+<footer class="site-footer py-10">
   {{/* Footer menu */}}
   {{ if .Site.Menus.footer }}
-    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400 print:hidden">
       <ul class="flex list-none flex-col sm:flex-row">
         {{ range .Site.Menus.footer }}
           {{ if and (eq .Params.action "locale") (or (not page.IsTranslated) (not hugo.IsMultilingual)) }}
@@ -93,7 +93,7 @@
       {{ end }}
       {{/* Theme attribution */}}
       {{ if .Site.Params.footer.showThemeAttribution | default true }}
-        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        <p class="text-xs text-neutral-500 dark:text-neutral-400 print:hidden">
           {{ $hugo := printf `<a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
             href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>`
           }}
@@ -102,12 +102,12 @@
         </p>
       {{ end }}
     </div>
-    <div class="flex flex-row items-center">
+    <div class="flex flex-row items-center print:hidden">
       {{/* Blog RSS feed */}}
       {{ with site.GetPage "/posts" }}
         {{ with .OutputFormats.Get "rss" }}
           <a
-            class="flex items-center text-xs text-neutral-500 transition-colors hover:text-primary-600 hover:underline dark:text-neutral-400 dark:hover:text-primary-400"
+            class="footer-feed-link flex items-center text-xs text-neutral-500 transition-colors hover:text-primary-600 hover:underline dark:text-neutral-400 dark:hover:text-primary-400"
             style="gap: 0.25rem; white-space: nowrap;"
             href="{{ .RelPermalink }}"
             aria-label="Subscribe to this feed"

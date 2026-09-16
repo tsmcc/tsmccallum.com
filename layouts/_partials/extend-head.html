@@ -1,0 +1,9 @@
+{{ if and .IsPage (eq .Section "posts") }}
+  {{ $hasTOC := and (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false)) (in .TableOfContents "<ul") }}
+  {{ $copyLink := resources.Get "js/copy-link.js" | resources.Minify | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha256") }}
+  {{ if $hasTOC }}
+    {{ $articleToc := resources.Get "js/article-toc.js" | resources.Minify | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha256") }}
+    <script defer src="{{ $articleToc.Permalink }}" integrity="{{ $articleToc.Data.Integrity }}"></script>
+  {{ end }}
+  <script defer src="{{ $copyLink.Permalink }}" integrity="{{ $copyLink.Data.Integrity }}"></script>
+{{ end }}

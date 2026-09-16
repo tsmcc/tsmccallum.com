@@ -1,0 +1,38 @@
+{{ with .Params.sharingLinks | default (.Site.Params.article.sharingLinks | default false) }}
+  {{ $links := hugo.Data.sharing }}
+  <section class="article-sharing not-prose print:hidden" aria-label="Share this post" data-copy-link-container>
+    <span class="article-sharing__label">Share this post:</span>
+    <div class="article-sharing__links">
+      {{ range . }}
+      {{ if eq . "copy-link" }}
+        <a
+          class="article-sharing__link"
+          href="{{ $.Permalink }}"
+          title="Copy link"
+          aria-label="Copy link"
+          data-copy-link
+          data-copy-url="{{ $.Permalink }}"
+          data-copy-default-label="Copy link"
+          data-copy-success-message="Link copied"
+        >
+          <span data-copy-link-icon>{{ partial "icon.html" "link" }}</span>
+          <span class="hidden" data-copy-link-success>{{ partial "icon.html" "check" }}</span>
+        </a>
+      {{ else }}
+        {{ with index $links . }}
+          <a
+            class="article-sharing__link"
+            href="{{ printf .url $.Permalink $.Title }}"
+            title="{{ i18n .title }}"
+            aria-label="{{ i18n .title }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            >{{ partial "icon.html" .icon }}</a
+          >
+        {{ end }}
+      {{ end }}
+      {{ end }}
+    </div>
+    <span class="sr-only" aria-live="polite" data-copy-link-status></span>
+  </section>
+{{ end }}

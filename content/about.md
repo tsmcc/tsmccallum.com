@@ -20,7 +20,7 @@ Over the course of my career, I've been a **Chief Engineer** aboard offshore tug
 
 Hands down, though, my favorite occupation is being a **dad**.
 
-I grew up in [Scituate, Massachusetts](https://en.wikipedia.org/wiki/Scituate,_Massachusetts) and received my B.S. from the [Massachusetts Maritime Academy](https://www.maritime.edu). I moved to the [Corpus Christi, Texas](https://en.wikipedia.org/wiki/Corpus_Christi,_Texas) area for work, lived in Texas for nearly fifteen years, and have since relocated back to Massachusetts.
+I grew up in [Scituate, Massachusetts](https://en.wikipedia.org/wiki/Scituate,_Massachusetts) and received my B.S. from the [Massachusetts Maritime Academy](https://www.maritime.edu). I moved to the [Corpus Christi, Texas](https://en.wikipedia.org/wiki/Corpus_Christi,_Texas) area for work, lived there for nearly fifteen years, and have since relocated back to Massachusetts.
 
 ## Areas of Expertise
 

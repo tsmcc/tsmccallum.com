@@ -1,0 +1,6 @@
+{{- $title := site.Title -}}
+{{- if hasSuffix $title ".com" -}}
+  {{- replaceRE `\.com$` "" $title -}}<span class="text-neutral-400 dark:text-neutral-500">.com</span>
+{{- else -}}
+  {{- $title | markdownify | emojify -}}
+{{- end -}}
