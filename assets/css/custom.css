@@ -171,6 +171,29 @@
     visibility: visible;
   }
 
+  .toc #TableOfContents a {
+    position: relative;
+    transition:
+      color 140ms ease,
+      font-weight 140ms ease;
+  }
+
+  .toc #TableOfContents a[aria-current="location"] {
+    color: var(--color-primary-600);
+    font-weight: 600;
+  }
+
+  .toc #TableOfContents a[aria-current="location"]::before {
+    background-color: currentColor;
+    border-radius: 9999px;
+    content: "";
+    height: 0.8em;
+    inset-inline-start: -0.75rem;
+    position: absolute;
+    top: 0.35em;
+    width: 2px;
+  }
+
   .toc-branding {
     border-top: 1px solid rgb(229 229 229);
     display: block;
@@ -274,6 +297,10 @@
 
 .dark .toc-copy-status {
   color: rgb(163 163 163);
+}
+
+.dark .toc #TableOfContents a[aria-current="location"] {
+  color: var(--color-primary-400);
 }
 
 .dark .toc-copy-link:hover,
