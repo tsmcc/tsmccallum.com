@@ -10,7 +10,7 @@ defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
 
 defaultThemeColor = "#FFFFFF"
-images = ["img/28_noBG.png"]
+images = ["img/tim-mccallum-profile.png"]
 
 enableSearch = false
 enableCodeCopy = true
