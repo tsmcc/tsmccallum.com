@@ -11,6 +11,7 @@ autoSwitchAppearance = true
 
 defaultThemeColor = "#FFFFFF"
 images = ["img/tim-mccallum-profile.png"]
+description = "Tim McCallum writes about engineering, technical leadership, emerging technology, and the projects and interests that keep him learning."
 
 enableSearch = false
 enableCodeCopy = true

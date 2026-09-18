@@ -3,7 +3,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="{{ .Site.Params.defaultThemeColor | default "#ffffff" }}" />
   {{/* Title */}}
-  {{ if .IsHome -}}
+  {{ if .Params.seoTitle -}}
+    <title>{{ .Params.seoTitle | emojify }}</title>
+    <meta name="title" content="{{ .Params.seoTitle | emojify }}" />
+  {{- else if .IsHome -}}
     <title>{{ .Title | emojify }}</title>
     <meta name="title" content="{{ .Title | emojify }}" />
   {{- else -}}

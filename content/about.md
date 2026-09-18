@@ -1,6 +1,7 @@
 ---
 title: "About"
-description: "Meet Tim McCallum, a marine engineer and technical leader with experience leading vessel operations, engineering teams, and industry-defining maritime projects."
+seoTitle: "About Tim McCallum | tsmccallum.com"
+description: "Learn about Tim McCallum and his interests in engineering, technical leadership, emerging technology, and the projects that keep him learning."
 showDate: false
 showReadingTime: false
 showWordCount: false

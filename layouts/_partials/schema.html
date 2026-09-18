@@ -20,6 +20,7 @@
     "@type": "WebSite",
     "@id": "{{ (site.GetPage "/").Permalink | safeURL }}",
     "name": "{{ .Site.Title | safeJS }}",
+    "alternateName": "{{ .Site.Language.Params.Author.name | safeJS }}",
     {{ with .Site.Params.description }}"description": "{{ . | safeJS }}",{{ end }}
     {{ with .Site.Language.Locale }}"inLanguage": "{{ . }}",{{ end }}
     "url": "{{ (site.GetPage "/").Permalink | safeURL }}",
