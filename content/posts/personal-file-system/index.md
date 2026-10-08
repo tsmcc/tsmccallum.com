@@ -1,7 +1,7 @@
 ---
 title: "A Place for Every File"
 seoTitle: "A Place for Every File: Organizing Personal Files"
-date: 2026-10-07T09:00:00-04:00
+date: 2026-10-08T09:00:00-04:00
 draft: false
 inlineCodeStyle: soft
 description: "A practical folder structure for organizing personal documents, finances, work, media, and projects, with a consistent approach to file naming."
