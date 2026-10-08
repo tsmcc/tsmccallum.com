@@ -136,8 +136,19 @@
     <meta http-equiv="refresh" content="0; url={{ . }}" />
   {{ end }}
   {{/* Social */}}
-  {{ partial "opengraph.html" . }}
-  {{ partial "twitter_cards.html" . }}
+  {{ $openGraph := partial "opengraph.html" . }}
+  {{ $twitter := partial "twitter_cards.html" . }}
+  {{ $socialTitle := .Params.socialTitle | default "" }}
+  {{ if and (not $socialTitle) .IsPage (eq .Section "posts") .Params.seoTitle }}
+    {{ $socialTitle = .Params.seoTitle }}
+  {{ end }}
+  {{ with $socialTitle }}
+    {{ $title := . | emojify | htmlEscape }}
+    {{ $openGraph = replaceRE `<meta property="og:title" content="[^"]*">` (printf `<meta property="og:title" content="%s">` $title) $openGraph }}
+    {{ $twitter = replaceRE `<meta name="twitter:title" content="[^"]*">` (printf `<meta name="twitter:title" content="%s">` $title) $twitter }}
+  {{ end }}
+  {{ $openGraph | safeHTML }}
+  {{ $twitter | safeHTML }}
   {{/* Schema */}}
   {{ partial "schema.html" . }}
   {{/* Me */}}

@@ -4,7 +4,7 @@
   {{- $feature := $images.GetMatch (.Params.feature | default "*feature*") | default $cover }}
   {{- $hasTOC := and (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false)) (in .TableOfContents "<ul") }}
   {{- $showBackToBlog := and (eq .Section "posts") (not .Params.archived) }}
-  <article>
+  <article{{ if eq .Params.inlineCodeStyle "soft" }} class="soft-inline-code"{{ end }}>
     <header class="article-header max-w-prose">
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}
@@ -38,7 +38,7 @@
           {{ $class := "mb-4 rounded-md" }}
           {{ $webp := $.Page.Site.Params.enableImageWebp | default true }}
           {{ $sizes := "(min-width: 1024px) 65ch, (min-width: 768px) calc(100vw - 12rem), (min-width: 640px) calc(100vw - 7rem), calc(100vw - 3rem)" }}
-          {{ partial "picture.html" (dict "img" . "alt" $altText "class" $class "lazy" false "webp" $webp "sizes" $sizes "fetchPriority" "high") }}
+          {{ partial "picture.html" (dict "img" . "alt" $altText "class" $class "lazy" false "webp" $webp "sizes" $sizes "fetchPriority" "high" "quality" (string ($.Params.featureQuality | default 85)) "fullSource" ($.Params.featureFullSource | default false) "includeOriginal" true) }}
           {{ with $.Params.coverCaption }}
             <figcaption class="-mt-3 mb-6 text-center">{{ . | markdownify }}</figcaption>
           {{ end }}

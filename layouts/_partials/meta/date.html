@@ -1,0 +1,4 @@
+<time datetime="{{ . }}">
+  <span class="article-date-long">{{- i18n "article.date" (dict "Date" (partial "functions/date.html" .)) | emojify -}}</span>
+  <span class="article-date-short">{{ .Format "2006-01-02" }}</span>
+</time>

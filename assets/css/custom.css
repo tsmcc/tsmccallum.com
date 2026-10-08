@@ -327,3 +327,151 @@
     padding-top: 1rem;
   }
 }
+
+/* Keep inline code styling without decorative backticks in workflow examples. */
+.prose code.workflow-code::before,
+.prose code.workflow-code::after {
+  content: none;
+}
+
+/* Highlight the start-small advice without competing with bold example labels. */
+.prose .workflow-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-block: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background-color: rgba(var(--color-primary-50), 0.8);
+}
+.dark .prose .workflow-note {
+  background-color: rgba(var(--color-primary-400), 0.1);
+}
+.prose .workflow-note-icon {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 1.65rem;
+  height: 1.65rem;
+  padding: 0.25rem;
+  margin-top: 0.05em;
+  border-radius: 50%;
+  background-color: rgba(var(--color-primary-200), 0.35);
+  color: rgba(var(--color-primary-600), 0.85);
+}
+.dark .prose .workflow-note-icon {
+  background-color: rgba(var(--color-primary-400), 0.14);
+  color: rgba(var(--color-primary-300), 0.85);
+}
+.prose .workflow-note-content {
+  min-width: 0;
+}
+.prose .workflow-note-content > p {
+  margin-block: 0;
+  font-weight: 400;
+}
+
+.article-date-short {
+  display: none;
+}
+.reading-time-short {
+  display: none;
+}
+@media (max-width: 639px) {
+  .reading-time-long {
+    display: none;
+  }
+  .reading-time-short {
+    display: inline;
+  }
+  .article-list-card .article-date-long {
+    display: none;
+  }
+  .article-list-card .article-date-short {
+    display: inline;
+  }
+}
+
+/* Keep listing taxonomy badges on one line within each article card. */
+.article-list-card > div:last-child {
+  min-width: 0;
+}
+.article-list-card .article-taxonomies {
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.article-list-card .article-taxonomies a {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.article-list-card .article-taxonomies a[hidden] {
+  display: none;
+}
+
+.prose strong.sensitive-documents-note {
+  color: #a64242;
+}
+.dark .prose strong.sensitive-documents-note {
+  color: #e6a0a0;
+}
+
+/* Keep endnotes visually quieter than the article body. */
+.prose .footnotes {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Soft inline code shares the Mermaid blue palette and wraps long paths. */
+.soft-inline-code .prose :not(pre) > code {
+  background-color: rgba(var(--color-primary-200), 0.35);
+  color: rgba(var(--color-neutral-700), 1);
+  padding: 0.12em 0.35em;
+  border-radius: 0.25rem;
+  font-size: 0.88em;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.soft-inline-code .prose :not(pre) > code::before,
+.soft-inline-code .prose :not(pre) > code::after {
+  content: none;
+}
+.dark .soft-inline-code .prose :not(pre) > code {
+  background-color: rgba(var(--color-primary-700), 0.3);
+  color: rgba(var(--color-neutral-200), 1);
+}
+
+/* Give folder labels a clear anchor in the personal file structure tables. */
+.soft-inline-code .prose table td:first-child {
+  font-weight: 600;
+  color: rgba(var(--color-neutral-800), 1);
+}
+.dark .soft-inline-code .prose table td:first-child {
+  color: rgba(var(--color-neutral-100), 1);
+}
+
+/* Subtle blue column tint matches the inline code and diagram palette. */
+.soft-inline-code .prose table td:first-child {
+  background-color: rgba(var(--color-primary-200), 0.18);
+  padding-inline: 0.5rem;
+}
+.dark .soft-inline-code .prose table td:first-child {
+  background-color: rgba(var(--color-primary-700), 0.18);
+}
+
+/* A lighter tint unifies the table while preserving the folder column emphasis. */
+.soft-inline-code .prose table {
+  background-color: rgba(var(--color-primary-200), 0.06);
+}
+.dark .soft-inline-code .prose table {
+  background-color: rgba(var(--color-primary-700), 0.06);
+}
+.soft-inline-code .prose table th,
+.soft-inline-code .prose table td {
+  padding-inline: 0.5rem;
+}
+
+/* Keep post introductions readable against the dark background. */
+.dark article .prose .lead {
+  color: rgba(var(--color-neutral-300), 1);
+}

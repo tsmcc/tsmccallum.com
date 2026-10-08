@@ -1,4 +1,10 @@
 {{ $img := .img }}
+{{ $quality := "" }}
+{{ with .quality }}
+  {{ if in (slice "85" "90" "95" "100") . }}
+    {{ $quality = printf " q%s" . }}
+  {{ end }}
+{{ end }}
 {{ $alt := .alt }}
 {{ $class := .class }}
 {{ $lazy := .lazy }}
@@ -7,6 +13,8 @@
 {{ $x2 := .x2 | default false }}
 {{ $sizes := .sizes | default "100vw" }}
 {{ $fetchPriority := .fetchPriority | default "" }}
+{{ $fullSource := .fullSource | default false }}
+{{ $includeOriginal := .includeOriginal | default false }}
 
 {{ with $img }}
   {{ if (eq .MediaType.SubType "svg") }}
@@ -58,24 +66,29 @@
       {{ end }}
       {{ if and $webp (ne .MediaType.SubType "gif") }}
         <source
-          {{ if lt .Width 660 }}
-            {{ with .Resize (printf "%dx%d webp" .Width .Height) }}
+          {{ if and $fullSource (eq .MediaType.SubType "webp") }}
+            srcset="{{ .Permalink }}"
+          {{ else if lt .Width 660 }}
+            {{ with .Resize (printf "%dx%d webp%s" .Width .Height $quality) }}
               srcset="{{ .Permalink }}"
             {{ end }}
           {{ else }}
-            srcset=" {{- (.Resize "330x webp").Permalink }} 330w,
-            {{- (.Resize "660x webp").Permalink }} 660w
+            srcset=" {{- (.Resize (printf "330x webp%s" $quality)).Permalink }} 330w,
+            {{- (.Resize (printf "660x webp%s" $quality)).Permalink }} 660w
             {{ if gt .Width 1024 }}
-              ,{{ (.Resize "1024x webp").Permalink }} 1024w
+              ,{{ (.Resize (printf "1024x webp%s" $quality)).Permalink }} 1024w
             {{ else }}
-              {{ with .Resize (printf "%dx%d webp" .Width .Height) }}
+              {{ with .Resize (printf "%dx%d webp%s" .Width .Height $quality) }}
                 ,{{ .Permalink }} {{ .Width }}w
               {{ end }}
             {{ end }}
             {{ if gt .Width 1320 }}
-              ,{{ (.Resize "1320x webp").Permalink }} 1320w
+              ,{{ (.Resize (printf "1320x webp%s" $quality)).Permalink }} 1320w
+              {{ if and $includeOriginal (eq .MediaType.SubType "webp") }}
+                ,{{ .Permalink }} {{ .Width }}w
+              {{ end }}
             {{ else }}
-              {{ with .Resize (printf "%dx%d webp" .Width .Height) }}
+              {{ with .Resize (printf "%dx%d webp%s" .Width .Height $quality) }}
                 ,{{ .Permalink }} {{ .Width }}w
               {{ end }}
             {{ end }}"
@@ -91,18 +104,21 @@
         {{ with $alt }}alt="{{ . }}"{{ end }}
         {{ with $lazy }}loading="lazy" decoding="async"{{ end }}
         {{ with $fetchPriority }}fetchpriority="{{ . }}"{{ end }}
-        {{ if lt .Width 660 }}
+        {{ if or $fullSource (lt .Width 660) }}
           src="{{ .Permalink }}"
         {{ else }}
-          src="{{ (.Resize "660x").Permalink }}" srcset=" {{- (.Resize "330x").Permalink }} 330w,
-          {{- (.Resize "660x").Permalink }} 660w
+          src="{{ (.Resize (printf "660x%s" $quality)).Permalink }}" srcset=" {{- (.Resize (printf "330x%s" $quality)).Permalink }} 330w,
+          {{- (.Resize (printf "660x%s" $quality)).Permalink }} 660w
           {{ if gt .Width 1024 }}
-            ,{{ (.Resize "1024x").Permalink }} 1024w
+            ,{{ (.Resize (printf "1024x%s" $quality)).Permalink }} 1024w
           {{ else }}
             ,{{ .Permalink }} {{ .Width }}w
           {{ end }}
           {{ if gt .Width 1320 }}
-            ,{{ (.Resize "1320x").Permalink }} 1320w
+            ,{{ (.Resize (printf "1320x%s" $quality)).Permalink }} 1320w
+            {{ if $includeOriginal }}
+              ,{{ .Permalink }} {{ .Width }}w
+            {{ end }}
           {{ else }}
             ,{{ .Permalink }} {{ .Width }}w
           {{ end }}"

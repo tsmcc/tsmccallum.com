@@ -3,8 +3,10 @@
   {{ $paginator := .Paginate $recentPages .Site.Params.homepage.recentLimit }}
   {{ with $paginator.Pages }}
     <h2 class="mt-8 text-2xl font-extrabold">{{ i18n "shortcode.recent_articles" | emojify }}</h2>
+    <div class="homepage-recent-articles">
     {{ range first $.Site.Params.homepage.recentLimit . }}
       {{ partial "article-link.html" . }}
     {{ end }}
+    </div>
   {{ end }}
 {{ end }}
