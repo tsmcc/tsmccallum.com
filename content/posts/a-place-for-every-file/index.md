@@ -1,5 +1,6 @@
 ---
 title: "A Place for Every File"
+aliases: ["/posts/personal-file-system/"]
 seoTitle: "A Place for Every File: Organizing Personal Files"
 date: 2026-10-08T09:00:00-04:00
 draft: false
