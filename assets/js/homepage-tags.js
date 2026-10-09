@@ -11,11 +11,10 @@
         + (parseFloat(style.marginRight) || 0);
     });
     let used = 0;
-    let overflow = false;
     links.forEach((link, index) => {
-      used += widths[index];
-      overflow = overflow || used > available;
-      link.hidden = overflow;
+      const fits = used + widths[index] <= available;
+      link.hidden = !fits;
+      if (fits) used += widths[index];
     });
   };
   const observer = new ResizeObserver(entries => entries.forEach(entry => fit(entry.target)));
